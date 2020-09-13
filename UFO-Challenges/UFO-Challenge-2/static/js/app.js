@@ -43,6 +43,8 @@ function buttonclick(){
     Object.entries(filters).forEach(([key, value]) => {
       filtered = filtered.filter(row => row[key] === value)
     });
+      //build a new table depending on the filtered data - if the user input does not match any of the existing data
+    //it will return a blank table
       buildtable(filtered);
   };
   //uses d3 on the class of the button in the HTML to run this function when the button is clicked on 
