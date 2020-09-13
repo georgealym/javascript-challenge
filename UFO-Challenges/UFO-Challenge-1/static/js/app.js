@@ -14,14 +14,23 @@ function buildtable(data) {
         });
 });
 }
+//add a function for when you click the button 
+
+function buttonclick(){
+    d3.event.preventDefault();
+    //create variables using the user input
+    var userinput = d3.select("#datetime").property("value");
+    var newdata = tableData;
+    //filter depending on what the user input by date
+    if(userinput) {newdata = newdata.filter((row) => row.datetime === userinput)} 
+    //build a new table depending on the filtered data - if the user input does not match any of the dates
+    //it will return a blank table 
+    buildtable(newdata)    
+  };
+  //uses d3 on the class of the button in the HTML to run this function when the button is clicked on 
+  //the webpage
+  d3.selectAll("#filter-btn").on("click", buttonclick);
+
+//If it is not filtered, this creates a table with all the data
 buildtable(tableData) 
 
-function clickData() {
-    var datetimeInput = d3.select("#datetime").property("value")
-    var datetimeFilter = tdata.filter(row => row.datetime === datetimeInput);
-    BuildData(datetimeFilter);
-    console.log(datetimeFilter);
-    console.log(datetimeInput)
-};
-
-d3.selectAll("#filter-btn").on("click", clickData)
